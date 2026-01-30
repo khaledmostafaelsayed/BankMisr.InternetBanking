@@ -10,11 +10,12 @@ public class Local_Transfer_TestSuite extends BaseTest {
 
 	@DataProvider(name = "transferData")
 	public Object[][] getTransferData() {
-		return new Object[][] { { "khaled@1", "Kony@1357", "1674", "6801", "100" },
-			                 	{ "khaled@1", "Kony@1357", "1674", "6801", "500" } };}
+		return new Object[][] { { "khaled@1", "Kony@1357", "1674", "6801", "100", "111111" },
+				{ "khaled@1", "Kony@1357", "1674", "6801", "500", "111111" } };
+	}
 
 	@Test(dataProvider = "transferData")
-	public void verifyTransferBug(String user, String pass, String fromAcc, String toAcc, String amt)
+	public void verifyTransferBug(String user, String pass, String fromAcc, String toAcc, String amt, String otp)
 			throws InterruptedException {
 		Login_Page login = new Login_Page(driver);
 		Local_Transfer_Page transferPage = new Local_Transfer_Page(driver);
@@ -27,5 +28,14 @@ public class Local_Transfer_TestSuite extends BaseTest {
 		transferPage.performTransfer(fromAcc, toAcc, amt);
 		// 4. Click on Button "Continue"
 		transferPage.clickContinue();
+		// 5. Click on Button "Continue"
+		transferPage.clickConfirm();
+
+		// 6. Enter OTP & Confirm
+		transferPage.enterOtp(otp);
+
+		// 7. Confirm OTP
+		transferPage.confirmOTP();
+
 	}
 }

@@ -23,6 +23,15 @@ public class Local_Transfer_Page {
 			.xpath("//div[@kwp='frmUTFDomesticTransfer_UnifiedTransfer_flxPurposeCodeDropdown']");
 	private By continueBtn = By.xpath("//button[@aria-label='Continue to Confirmation Screen']");
 
+	/* Confirm in Review Screen */
+	private By confirmBtn = By.xpath("//button[@aria-label='Confirm money transfer details']");
+
+	/* OTP Auto Focus */
+	private By focusOTP = By.xpath("//input[@kw='TextBox2']");
+
+	/* Confirm in OTP */
+	private By confirmOTP = By.xpath("//button[@kwp='frmUTFDomesticTransferConfirmation_OTPWeb_btnConfirmOtp']");
+
 	// Constructor
 	public Local_Transfer_Page(WebDriver driver) {
 		this.driver = driver;
@@ -69,9 +78,30 @@ public class Local_Transfer_Page {
 				.sendKeys(Keys.ENTER).perform();
 	}
 
+	// Continue Button
 	public void clickContinue() {
 		WebElement btn = wait.until(ExpectedConditions.presenceOfElementLocated(continueBtn));
 		js.executeScript("arguments[0].scrollIntoView(true);", btn);
+		js.executeScript("arguments[0].click();", btn);
+	}
+
+	// Confirm Button in Review Screen
+	public void clickConfirm() {
+		WebElement btn = wait.until(ExpectedConditions.visibilityOfElementLocated(confirmBtn));
+		js.executeScript("arguments[0].scrollIntoView(true);", btn);
+		js.executeScript("arguments[0].click();", btn);
+	}
+
+	// Enter OTP
+	public void enterOtp(String otpValue) {
+		WebElement firstCell = wait.until(ExpectedConditions.elementToBeClickable(focusOTP));
+		firstCell.click();
+		firstCell.sendKeys(otpValue);
+	}
+
+	// Confirm OTP
+	public void confirmOTP() {
+		WebElement btn = wait.until(ExpectedConditions.elementToBeClickable(confirmOTP));
 		js.executeScript("arguments[0].click();", btn);
 	}
 }
