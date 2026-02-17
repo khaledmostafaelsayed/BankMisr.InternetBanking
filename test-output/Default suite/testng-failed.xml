@@ -5,7 +5,7 @@
     <classes>
       <class name="com.tests.Local_Transfer_TestSuite">
         <methods>
-          <include name="verifyTransferBug" invocation-numbers="1"/>
+          <include name="verifyTransferBug" invocation-numbers="0"/>
           <include name="tearDown"/>
           <include name="setUp"/>
         </methods>

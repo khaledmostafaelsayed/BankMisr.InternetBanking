@@ -10,8 +10,8 @@ public class Local_Transfer_TestSuite extends BaseTest {
 
 	@DataProvider(name = "transferData")
 	public Object[][] getTransferData() {
-		return new Object[][] { { "khaled@1", "Kony@1357", "1674", "6801", "100", "111111" },
-				{ "khaled@1", "Kony@1357", "1674", "6801", "500", "111111" } };
+		return new Object[][] { { "khaled@4", "Kony@2026", "8134", "4051", "500", "111111" },
+				{ "khaled@4", "Kony@2026", "8134", "4051", "4500", "111111" } };
 	}
 
 	@Test(dataProvider = "transferData")
